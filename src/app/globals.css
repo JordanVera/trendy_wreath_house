@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0c0c0c;
+  --charcoal: #171614;
+  --gold: #b89b5e;
+  --champagne: #dcc69c;
+  --ivory: #f6f2e9;
+  --muted: #a7a29a;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-height: 4.5rem;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-gold: var(--gold);
+  --color-champagne: var(--champagne);
+  --color-ivory: var(--ivory);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-jost);
+  --font-serif: var(--font-cormorant);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+section[id] {
+  scroll-margin-top: var(--header-height);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise {
+    animation: hero-rise 1s var(--ease-luxury) both;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+body {
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: var(--font-jost), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.display {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+}
+
+.display em,
+.italic-accent {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--ivory);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-luxury);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.wreath-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  container-type: size;
+}
+
+.wreath-layer {
+  position: absolute;
+  left: calc(var(--end-x) * 1%);
+  top: calc(var(--end-y) * 1%);
+  opacity: 1;
+  transform: none;
+  will-change: transform, opacity;
+}
+
+.wreath-origin {
+  transform: translate(-50%, -50%) rotate(var(--end-r));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wreath-layer {
+    animation: wreath-in var(--duration) var(--ease-luxury) var(--delay) both;
+  }
+
+  .wreath-origin {
+    animation: wreath-spin var(--duration) var(--ease-luxury) var(--delay) both;
+  }
+}
+
+@keyframes wreath-in {
+  0% {
+    opacity: 0;
+    transform: translate(var(--sx), var(--sy));
+  }
+
+  62% {
+    opacity: 1;
+    transform: translate(var(--mx), var(--my));
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wreath-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(var(--start-r));
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(var(--end-r));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wreath-layer,
+  .wreath-origin {
+    animation: none !important;
+  }
+
+  .wreath-layer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .wreath-origin {
+    transform: translate(-50%, -50%) rotate(var(--end-r)) !important;
+  }
+
+  .wreath-parallax,
+  .generate-word {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+.wreath-parallax {
+  width: 100%;
+  height: 100%;
+  transform: translate(
+    calc(var(--px, 0) * var(--depth) * 16px),
+    calc(var(--py, 0) * var(--depth) * 12px)
+  );
+  transition: transform 0.7s var(--ease-luxury);
+}
+
+@media (max-width: 767px) {
+  .wreath-parallax {
+    transform: none;
+  }
+}
+
+.image-mask img {
+  transform: scale(1.04);
+  transition: transform 0.8s var(--ease-luxury);
+}
+
+.image-mask:hover img,
+.image-mask:focus-visible img {
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-mask img,
+  .image-mask:hover img,
+  .image-mask:focus-visible img {
+    transform: none;
+    transition: none;
+  }
+}

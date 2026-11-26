@@ -1,0 +1,116 @@
+import type { BotanicalCategory, BotanicalId } from "@/data/botanical-assets";
+
+export type WreathLayer = {
+  id: string;
+  assetId: BotanicalId;
+  category: BotanicalCategory;
+  x: number;
+  y: number;
+  startX: number;
+  startY: number;
+  rotation: number;
+  startRotation: number;
+  width: number;
+  z: number;
+  delay: number;
+  duration: number;
+  depth: number;
+  desktopOnly?: boolean;
+};
+
+function layer(
+  id: string,
+  assetId: BotanicalId,
+  category: BotanicalCategory,
+  x: number,
+  y: number,
+  rotation: number,
+  width: number,
+  z: number,
+  delay: number,
+  duration: number,
+  depth: number,
+  travel: number,
+  spin: number,
+  desktopOnly = false,
+): WreathLayer {
+  const dx = x - 500;
+  const dy = y - 508;
+  const length = Math.hypot(dx, dy) || 1;
+  return {
+    id,
+    assetId,
+    category,
+    x,
+    y,
+    startX: Math.round(x + (dx / length) * travel),
+    startY: Math.round(y + (dy / length) * travel),
+    rotation,
+    startRotation: rotation + spin,
+    width,
+    z,
+    delay,
+    duration,
+    depth,
+    desktopOnly,
+  };
+}
+
+/**
+ * Positions use a 1000×1000 stage. Final placement is art-directed;
+ * start coordinates travel outward from the wreath's center.
+ */
+export const wreathLayers: readonly WreathLayer[] = [
+  layer("base", "wreath-base", "base", 500, 508, 0, 540, 2, 0.55, 1.2, 0.15, 46, -6),
+
+  layer("euc-back-left", "eucalyptus-c", "greenery", 330, 330, -128, 270, 3, 0.68, 1.15, 0.28, 120, -18),
+  layer("euc-left", "eucalyptus-a", "greenery", 268, 530, -32, 330, 4, 0.82, 1.2, 0.42, 138, 16),
+  layer("euc-bottom", "eucalyptus-b", "greenery", 548, 708, 10, 340, 4, 0.94, 1.15, 0.46, 108, -12),
+  layer("euc-right", "eucalyptus-c", "greenery", 748, 470, 42, 300, 3, 1.05, 1.18, 0.36, 146, 20),
+  layer("euc-upper-right", "eucalyptus-b", "greenery", 690, 292, 118, 230, 2, 0.78, 1.1, 0.24, 124, 18, true),
+  layer("euc-lower-right", "eucalyptus-a", "greenery", 650, 650, 58, 250, 3, 1.12, 1.1, 0.32, 96, -16),
+  layer("euc-far-left", "eucalyptus-b", "greenery", 196, 400, -78, 210, 2, 0.9, 1.12, 0.22, 110, 14, true),
+
+  layer("hydrangea-upper", "hydrangea-a", "hydrangea", 352, 308, -12, 248, 8, 1.28, 1.25, 0.58, 156, -20),
+  layer("hydrangea-left", "hydrangea-b", "hydrangea", 262, 468, 16, 220, 7, 1.46, 1.2, 0.52, 132, 14),
+  layer("hydrangea-right", "hydrangea-a", "hydrangea", 688, 500, -8, 168, 5, 1.52, 1.15, 0.3, 88, -8, true),
+
+  layer("rose-eleven", "rose-ivory-a", "rose", 458, 246, -8, 206, 10, 1.36, 1.28, 0.7, 164, -12),
+  layer("rose-one", "rose-ivory-b", "rose", 678, 268, 15, 196, 10, 1.66, 1.24, 0.66, 148, 18),
+  layer("rose-four", "rose-ivory-c", "rose", 736, 562, 22, 186, 9, 1.86, 1.2, 0.62, 154, -16),
+  layer("rose-bottom", "rose-ivory-a", "rose", 470, 692, -18, 156, 8, 2.02, 1.12, 0.5, 112, 12),
+  layer("rose-left-cluster", "rose-ivory-c", "rose", 304, 360, -22, 148, 9, 1.74, 1.18, 0.48, 120, -14),
+
+  layer("bloom-right", "bloom-champagne-a", "bloom", 798, 402, -6, 208, 11, 1.96, 1.24, 0.74, 162, 10),
+  layer("bloom-bottom", "bloom-champagne-b", "bloom", 604, 726, 16, 172, 8, 2.12, 1.12, 0.54, 118, -14),
+  layer("bloom-inner", "bloom-champagne-a", "bloom", 392, 642, 26, 150, 7, 2.16, 1.08, 0.42, 96, 18, true),
+
+  layer("filler-top", "filler-a", "filler", 418, 356, -16, 136, 12, 2.22, 1.02, 0.78, 92, -22),
+  layer("filler-right", "filler-b", "filler", 612, 384, 12, 126, 12, 2.34, 1, 0.7, 104, 16),
+  layer("filler-left", "filler-a", "filler", 328, 582, 8, 116, 9, 2.42, 0.98, 0.4, 84, -8, true),
+  layer("filler-lower-right", "filler-b", "filler", 708, 640, -18, 120, 11, 2.5, 1.02, 0.58, 112, 14),
+  layer("filler-crown", "filler-b", "filler", 548, 292, 6, 108, 11, 2.28, 0.96, 0.46, 78, 10),
+  layer("filler-edge", "filler-a", "filler", 762, 534, 20, 100, 12, 2.46, 0.94, 0.5, 90, -12, true),
+
+  layer("gold-berries-left", "gold-berries", "gold", 228, 624, 28, 198, 6, 2.55, 1.1, 0.5, 142, 22),
+  layer("gold-leaves-right", "gold-leaves", "gold", 770, 668, -26, 206, 6, 2.66, 1.12, 0.56, 134, -18),
+  layer("gold-berries-edge", "gold-berries", "gold", 828, 498, 48, 136, 5, 2.76, 1, 0.34, 102, 16, true),
+  layer("gold-leaves-bottom", "gold-leaves", "gold", 386, 746, 38, 156, 5, 2.7, 1.04, 0.4, 94, -20),
+  layer("gold-leaves-crown", "gold-leaves", "gold", 560, 250, 108, 146, 4, 2.6, 1.02, 0.26, 86, 12, true),
+
+  layer("ribbon", "ribbon", "ribbon", 618, 812, -6, 470, 15, 2.9, 1.2, 0.9, 168, -8),
+];
+
+export function arcPoint(item: WreathLayer) {
+  const mx = (item.startX + item.x) / 2;
+  const my = (item.startY + item.y) / 2;
+  const dx = item.x - item.startX;
+  const dy = item.y - item.startY;
+  const length = Math.hypot(dx, dy) || 1;
+  const sign = item.z % 2 === 0 ? 1 : -1;
+  const bow = 26 + item.depth * 22;
+  return {
+    x: mx + (-dy / length) * bow * sign,
+    y: my + (dx / length) * bow * sign,
+  };
+}
