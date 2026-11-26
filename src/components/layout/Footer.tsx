@@ -1,24 +1,9 @@
-import { contact, navigation, policies, site } from "@/data/site-content";
+import Image from 'next/image';
+import { contact, navigation, policies, site } from '@/data/site-content';
 
-function contactLine(label: string, value: string) {
-  if (!value) {
-    return (
-      <p>
-        <span className="text-muted">{label}</span>
-        <span className="mt-1 block text-ivory/80">Details coming soon</span>
-      </p>
-    );
-  }
-
-  const href = label === "Email" ? `mailto:${value}` : label === "Instagram" ? value : `tel:${value}`;
-  return (
-    <p>
-      <span className="text-muted">{label}</span>
-      <a href={href} className="nav-link mt-1 inline-flex">
-        {label === "Instagram" ? "Instagram" : value}
-      </a>
-    </p>
-  );
+function telHref(display: string) {
+  const digits = display.replace(/\D/g, '');
+  return digits.length === 10 ? `tel:+1${digits}` : `tel:${digits}`;
 }
 
 export function Footer() {
@@ -26,10 +11,13 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-gold/20 bg-ink text-ivory">
       <div className="relative z-10 mx-auto grid max-w-[1680px] gap-14 px-6 py-16 md:grid-cols-12 lg:px-12">
         <div className="md:col-span-5">
-          <p className="font-serif text-4xl leading-none">
-            The Trendy
-            <span className="block italic text-champagne">Wreath House</span>
-          </p>
+          <Image
+            src="/images/brand/logo.png"
+            alt={site.name}
+            width={120}
+            height={120}
+            className="h-20 w-20 object-contain"
+          />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">
             A boutique wreath studio for the seasons of a home.
           </p>
@@ -42,13 +30,40 @@ export function Footer() {
           ))}
         </nav>
         <div className="flex flex-col gap-5 text-sm md:col-span-4">
-          {contactLine("Email", contact.email)}
-          {contactLine("Phone", contact.phone)}
-          {contactLine("Instagram", contact.instagram)}
+          <p>
+            <span className="text-muted">Email</span>
+            <a href={`mailto:${contact.email}`} className="nav-link mt-1 inline-flex">
+              {contact.email}
+            </a>
+          </p>
+          <div>
+            <span className="text-muted">Phone</span>
+            <span className="mt-1 flex flex-col gap-1">
+              {contact.phones.map((phone) => (
+                <a key={phone} href={telHref(phone)} className="nav-link w-fit">
+                  {phone}
+                </a>
+              ))}
+            </span>
+          </div>
+          <p>
+            <span className="text-muted">Instagram</span>
+            <a href={contact.instagram} className="nav-link mt-1 inline-flex" target="_blank" rel="noreferrer">
+              {contact.instagramHandle}
+            </a>
+          </p>
+          <p>
+            <span className="text-muted">Facebook</span>
+            <a href={contact.facebook} className="nav-link mt-1 inline-flex" target="_blank" rel="noreferrer">
+              The Trendy Wreath House
+            </a>
+          </p>
         </div>
       </div>
       <div className="relative z-10 mx-auto flex max-w-[1680px] flex-col gap-3 px-6 pb-10 text-xs tracking-[0.16em] text-muted uppercase sm:flex-row sm:items-center sm:justify-between lg:px-12">
-        <p>© {site.year} {site.name}</p>
+        <p>
+          © {site.year} {site.name}
+        </p>
         <p className="flex gap-5">
           {policies.map((policy) => (
             <span key={policy.label}>{policy.label}</span>

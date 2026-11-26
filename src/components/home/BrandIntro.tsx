@@ -23,7 +23,7 @@ export function BrandIntro() {
                 alt={brandIntro.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
+                className="object-cover object-[center_35%]"
               />
             </div>
           </ImageReveal>
@@ -33,11 +33,6 @@ export function BrandIntro() {
             alt=""
             className="pointer-events-none absolute -bottom-8 -left-6 w-36 md:w-48"
           />
-          {brandIntro.placeholder ? (
-            <p className="mt-4 text-[0.68rem] tracking-[0.18em] text-ink/50 uppercase">
-              Temporary studio study
-            </p>
-          ) : null}
         </div>
       </div>
     </section>

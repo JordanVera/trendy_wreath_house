@@ -10,6 +10,7 @@ const frames = [
   "col-span-12 min-h-[56vw] md:col-span-7 md:min-h-0",
   "col-span-6 min-h-[46vw] md:col-span-3 md:min-h-0",
   "col-span-6 min-h-[56vw] md:col-span-4 md:min-h-0",
+  "col-span-12 min-h-[62vw] md:col-span-12 md:min-h-[42vw]",
 ];
 
 export function Gallery() {
@@ -38,7 +39,7 @@ export function Gallery() {
         );
       }
       if (event.key !== "Tab" || !dialog) return;
-      const items = [...dialog.querySelectorAll<HTMLElement>("button")];
+      const items = [...dialog.querySelectorAll<HTMLElement>("button, a")];
       const first = items[0];
       const last = items[items.length - 1];
       if (!first || !last) return;
@@ -68,11 +69,11 @@ export function Gallery() {
             <p className="eyebrow">05 — Gallery</p>
             <h2 className="mt-5 font-serif text-[clamp(3rem,5.5vw,5.6rem)] leading-[0.92] tracking-[-0.03em]">
               A lookbook
-              <span className="block italic text-champagne">in the making.</span>
+              <span className="block italic text-champagne">from the house.</span>
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-muted md:col-span-4 md:col-start-9">
-            These frames are temporary studio studies composed from the botanical sheet. Doorways and finished wreaths will replace them.
+            Recent pieces from the studio’s Instagram. Open a frame, then follow it back to the post.
           </p>
         </div>
         <div className="mt-14 grid auto-rows-[minmax(180px,26vw)] grid-cols-12 gap-3 md:gap-5">
@@ -92,6 +93,7 @@ export function Gallery() {
                 fill
                 sizes={index === 0 ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 50vw, 50vw"}
                 className="object-cover"
+                style={{ objectPosition: photo.objectPosition }}
               />
               <span className="sr-only">Open {photo.caption}</span>
             </button>
@@ -131,7 +133,10 @@ export function Gallery() {
               height={item.height}
               className="max-h-[74svh] w-auto max-w-full self-center object-contain"
             />
-            <div className="mt-4 flex gap-6">
+            <div className="mt-4 flex flex-wrap items-center gap-6">
+              <a href={item.href} className="nav-link min-h-11" target="_blank" rel="noreferrer">
+                View on {item.source}
+              </a>
               <button
                 type="button"
                 className="nav-link min-h-11"

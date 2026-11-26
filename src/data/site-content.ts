@@ -28,18 +28,16 @@ export const brandIntro = {
   eyebrow: "The house",
   title: ["More than a wreath.", "A beautiful first impression."],
   body: "The Trendy Wreath House composes wreaths as the first gesture of a home. Each one is built from layered botanicals, a considered palette, and the kind of attention usually reserved for a room. The work is seasonal, tactile, and meant to feel gathered rather than produced.",
-  image: "/images/brand/intro.jpg",
-  imageAlt: "Temporary studio study of an ivory rose, eucalyptus, and filler flowers",
-  placeholder: true,
+  image: "/images/social/ig-11-Dfk1yZ4Ti30.jpg",
+  imageAlt: "Black velvet ribbon and crystal trim on a lit Christmas tree from The Trendy Wreath House",
 } as const;
 
 export const signature = {
   eyebrow: "The signature",
   title: ["Every season deserves", "something beautiful."],
   body: "A wreath can greet an arrival, hold a celebration, or simply mark the turn of the year. It stays at the threshold — quiet, material, and ready to change when the light does.",
-  image: "/images/brand/signature.jpg",
-  imageAlt: "Temporary studio study of a grapevine wreath dressed with ivory blooms, eucalyptus, and a champagne ribbon",
-  placeholder: true,
+  image: "/images/social/ig-06-Df3cGF0TDNW.jpg",
+  imageAlt: "A flocked Christmas tree in chocolate, champagne, and warm light, installed in a living room",
 } as const;
 
 export const process = {
@@ -67,12 +65,12 @@ export const process = {
 export const about = {
   eyebrow: "About the house",
   title: ["Designed with intention.", "Made to welcome."],
-  body: "The Trendy Wreath House is a boutique wreath studio. The work favors natural texture, restrained color, and arrangements that feel collected by hand. A fuller account of the house will be told here by the people who make it.",
-  portrait: null as string | null,
-  study: "/images/brand/about.jpg",
-  studyAlt: "Temporary studio study standing in for a portrait of the atelier",
-  portraitNote: "A portrait of the studio is waiting on the house. This study stands in for now.",
-  placeholder: true,
+  body: "The Trendy Wreath House is a boutique wreath studio in The Woodlands. The work favors natural texture, a considered palette, and arrangements that feel collected by hand. A fuller account of the house will be told here by the people who make it.",
+  portrait: "/images/social/ig-03-Df8un9yzqxA.jpg",
+  portraitAlt: "The Trendy Wreath House with a gold and ivory nutcracker swag",
+  study: "/images/social/ig-03-Df8un9yzqxA.jpg",
+  studyAlt: "The Trendy Wreath House with a gold and ivory nutcracker swag",
+  portraitNote: "",
 } as const;
 
 export type Testimonial = {
@@ -92,9 +90,11 @@ export const inquiry = {
 } as const;
 
 export const contact = {
-  email: "",
-  phone: "",
-  instagram: "",
+  email: "info@thetrendywreathhouse.com",
+  phones: ["(346) 732-4215", "(346) 549-7804"],
+  instagram: "https://www.instagram.com/thetrendywreathhouse",
+  instagramHandle: "@thetrendywreathhouse",
+  facebook: "https://www.facebook.com/trendywreathhouse",
 } as const;
 
 export const policies = [

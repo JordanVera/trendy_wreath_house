@@ -23,11 +23,11 @@ export function Collections() {
           <p className="eyebrow">02 — Collections</p>
           <h2 className="mt-5 max-w-xl font-serif text-[clamp(3rem,5.5vw,5.6rem)] leading-[0.92] tracking-[-0.03em]">
             Five ways
-            <span className="block italic text-champagne">to dress a door.</span>
+            <span className="block italic text-champagne">the house is dressed.</span>
           </h2>
         </div>
         <p className="max-w-sm text-sm leading-relaxed text-muted">
-          Seasonal directions, shown as studio studies. Pricing and availability will follow the finished collection.
+          Photographs from the studio’s Instagram and Facebook. This season the work is at the door, on the table, and in the room.
         </p>
       </div>
       <div className="mt-8 hidden justify-end gap-6 px-6 md:flex lg:px-12">

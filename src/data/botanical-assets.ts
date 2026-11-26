@@ -149,19 +149,19 @@ export const botanicalAssets = [
     "id": "wreath-base",
     "category": "base",
     "src": "/images/botanicals/wreath-base.webp",
-    "width": 235,
-    "height": 201,
+    "width": 847,
+    "height": 855,
     "placeholder": true,
-    "alt": "Temporary base cutout from the studio reference sheet"
+    "alt": "Hand-twisted grapevine wreath base"
   },
   {
     "id": "ribbon",
     "category": "ribbon",
     "src": "/images/botanicals/ribbon.webp",
-    "width": 599,
-    "height": 155,
+    "width": 532,
+    "height": 604,
     "placeholder": true,
-    "alt": "Temporary ribbon cutout from the studio reference sheet"
+    "alt": "Champagne silk bow"
   }
 ] as const satisfies readonly BotanicalAsset[];
 

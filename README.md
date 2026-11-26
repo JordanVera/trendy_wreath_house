@@ -9,7 +9,7 @@ npm run dev
 
 The canonical URL in `src/app/layout.tsx` is provisional. Replace `https://thetrendywreathhouse.com` when the live domain is confirmed.
 
-Contact fields in `src/data/site-content.ts` are empty on purpose. Add `email`, `phone`, or `instagram` and the footer will link them. Policy names in the footer are labels, not links, until those pages exist.
+Contact in `src/data/site-content.ts` uses the studio’s public email, phone numbers, Instagram, and Facebook. Policy names in the footer are labels, not links, until those pages exist.
 
 Testimonials render only when `testimonials` in `src/data/site-content.ts` contains real reviews. An empty list hides the section.
 
@@ -29,4 +29,4 @@ To swap a piece:
 
 `npm run extract:botanicals` rebuilds the cutouts and the temporary stills from the original sheet. Pass a different sheet path as the first argument if needed.
 
-Gallery, collection, and brand images in `public/images` are composed from those same cutouts. Replace the paths in `src/data/collections.ts`, `src/data/gallery.ts`, and `src/data/site-content.ts` when real photography arrives. Set `about.portrait` to an image path to replace the studio study and its waiting note.
+Gallery, collection, and brand photographs in `public/images/social` come from the studio’s public Instagram and Facebook. The hero wreath still uses the botanical cutouts. Swap a photograph by replacing the file path in `src/data/collections.ts`, `src/data/gallery.ts`, or `src/data/site-content.ts`.

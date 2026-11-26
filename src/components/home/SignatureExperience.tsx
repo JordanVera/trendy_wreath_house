@@ -12,17 +12,13 @@ export function SignatureExperience() {
             <TextGenerateEffect lines={signature.title} />
           </h2>
           <p className="mt-8 max-w-md text-base leading-relaxed text-muted md:text-lg">{signature.body}</p>
-          {signature.placeholder ? (
-            <p className="mt-8 text-[0.68rem] tracking-[0.18em] text-champagne/80 uppercase">
-              Temporary studio study
-            </p>
-          ) : null}
         </div>
         <div className="lg:col-span-7">
           <ParallaxImage
             src={signature.image}
             alt={signature.imageAlt}
             sizes="(max-width: 1024px) 100vw, 58vw"
+            objectPosition="center 42%"
           />
         </div>
       </div>

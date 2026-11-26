@@ -98,7 +98,7 @@ export const wreathLayers: readonly WreathLayer[] = [
   layer("gold-leaves-bottom", "gold-leaves", "gold", 386, 746, 38, 156, 5, 2.7, 1.04, 0.4, 94, -20),
   layer("gold-leaves-crown", "gold-leaves", "gold", 560, 250, 108, 146, 4, 2.6, 1.02, 0.26, 86, 12, true),
 
-  layer("ribbon", "ribbon", "ribbon", 618, 812, -6, 470, 15, 2.9, 1.2, 0.9, 168, -8),
+  layer("ribbon", "ribbon", "ribbon", 530, 718, 2, 268, 16, 2.9, 1.15, 0.82, 72, -4),
 ];
 
 export function arcPoint(item: WreathLayer) {

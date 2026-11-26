@@ -8,9 +8,10 @@ type ParallaxImageProps = {
   src: string;
   alt: string;
   sizes: string;
+  objectPosition?: string;
 };
 
-export function ParallaxImage({ src, alt, sizes }: ParallaxImageProps) {
+export function ParallaxImage({ src, alt, sizes, objectPosition = "center" }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -21,7 +22,7 @@ export function ParallaxImage({ src, alt, sizes }: ParallaxImageProps) {
   return (
     <div ref={ref} className="relative h-[78vw] overflow-hidden lg:h-full lg:min-h-[92svh]">
       <motion.div style={{ y }} className="absolute inset-x-0 -top-[8%] h-[116%]">
-        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" style={{ objectPosition }} />
       </motion.div>
     </div>
   );

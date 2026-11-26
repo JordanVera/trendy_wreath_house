@@ -132,20 +132,34 @@ for (let index = 0; index < boxes.length; index += 1) {
   }
 
   const file = `${name.id}.webp`;
-  await sharp(pixels, {
-    raw: { width: crop.info.width, height: crop.info.height, channels: 4 },
-  })
-    .webp({ quality: 92, alphaQuality: 100, effort: 4 })
-    .toFile(path.join(botanicalDir, file));
+  const dest = path.join(botanicalDir, file);
+  const preserved = name.id === "wreath-base" || name.id === "ribbon";
+  let outWidth = crop.info.width;
+  let outHeight = crop.info.height;
+  if (preserved) {
+    const existing = await sharp(dest).metadata();
+    outWidth = existing.width ?? outWidth;
+    outHeight = existing.height ?? outHeight;
+  } else {
+    await sharp(pixels, {
+      raw: { width: crop.info.width, height: crop.info.height, channels: 4 },
+    })
+      .webp({ quality: 92, alphaQuality: 100, effort: 4 })
+      .toFile(dest);
+  }
 
   assets.push({
     id: name.id,
     category: name.category,
     src: `/images/botanicals/${file}`,
-    width: crop.info.width,
-    height: crop.info.height,
+    width: outWidth,
+    height: outHeight,
     placeholder: true,
-    alt: `Temporary ${name.category} cutout from the studio reference sheet`,
+    alt: preserved
+      ? name.id === "ribbon"
+        ? "Champagne silk bow"
+        : "Hand-twisted grapevine wreath base"
+      : `Temporary ${name.category} cutout from the studio reference sheet`,
   });
 }
 
@@ -232,7 +246,7 @@ await still({
   height: 1100,
   background: ink,
   layers: [
-    { id: "ribbon", x: 0.56, y: 0.62, w: 0.62, rotate: -6 },
+    { id: "ribbon", x: 0.62, y: 0.7, w: 0.24, rotate: -2 },
     { id: "rose-ivory-b", x: 0.36, y: 0.4, w: 0.28, rotate: -10 },
     { id: "rose-ivory-c", x: 0.58, y: 0.34, w: 0.26, rotate: 14 },
     { id: "bloom-champagne-b", x: 0.7, y: 0.5, w: 0.3, rotate: 4 },
@@ -271,7 +285,7 @@ await still({
     { id: "eucalyptus-b", x: 0.34, y: 0.46, w: 0.42, rotate: -30 },
     { id: "hydrangea-a", x: 0.38, y: 0.34, w: 0.36, rotate: -8 },
     { id: "rose-ivory-b", x: 0.66, y: 0.32, w: 0.28, rotate: 12 },
-    { id: "ribbon", x: 0.58, y: 0.74, w: 0.7, rotate: -8 },
+    { id: "ribbon", x: 0.54, y: 0.7, w: 0.32, rotate: 2 },
   ],
 });
 await still({
@@ -321,7 +335,7 @@ await still({
     { id: "hydrangea-a", x: 0.52, y: 0.36, w: 0.24, rotate: -10 },
     { id: "rose-ivory-a", x: 0.76, y: 0.32, w: 0.18, rotate: 12 },
     { id: "bloom-champagne-a", x: 0.8, y: 0.54, w: 0.2, rotate: 6 },
-    { id: "ribbon", x: 0.66, y: 0.74, w: 0.4, rotate: -4 },
+    { id: "ribbon", x: 0.66, y: 0.68, w: 0.2, rotate: 2 },
     { id: "gold-leaves", x: 0.46, y: 0.66, w: 0.22, rotate: 18 },
   ],
 });
@@ -355,7 +369,7 @@ await still({
   layers: [
     { id: "eucalyptus-b", x: 0.74, y: 0.58, w: 0.38, rotate: -18 },
     { id: "rose-ivory-a", x: 0.62, y: 0.4, w: 0.22, rotate: -8 },
-    { id: "ribbon", x: 0.8, y: 0.72, w: 0.4, rotate: 6 },
+    { id: "ribbon", x: 0.78, y: 0.68, w: 0.18, rotate: 4 },
     { id: "bloom-champagne-b", x: 0.86, y: 0.34, w: 0.2, rotate: 10 },
   ],
 });
